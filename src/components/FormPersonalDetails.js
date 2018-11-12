@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import AppBar from "material-ui/AppBar";
-import TextField from "material-ui/TextField";
-import RaisedButton from "material-ui/RaisedButton";
+
+import { TextField, Button } from "@material-ui/core";
 
 export class FormPersonalDetails extends Component {
   continue = e => {
@@ -18,44 +16,44 @@ export class FormPersonalDetails extends Component {
   render() {
     const { values, handleChange } = this.props;
     return (
-      <MuiThemeProvider>
-        <React.Fragment>
-          <AppBar title="Enter Personal Details" />
-          <TextField
-            hintText="Enter your Occupation"
-            floatingLabelText="Occupation"
-            onChange={handleChange("occupation")}
-            defaultValue={values.occupation}
-          />
-          <br />
-          <TextField
-            hintText="Enter your City"
-            floatingLabelText="City"
-            onChange={handleChange("city")}
-            defaultValue={values.city}
-          />
-          <br />
-          <TextField
-            hintText="Enter your Biography"
-            floatingLabelText="Biography"
-            onChange={handleChange("bio")}
-            defaultValue={values.bio}
-          />
-          <br />
-          <RaisedButton
-            label="Back"
-            primary={false}
-            style={styles.button}
-            onClick={this.back}
-          />
-          <RaisedButton
-            label="Continue"
-            primary={true}
-            style={styles.button}
-            onClick={this.continue}
-          />
-        </React.Fragment>
-      </MuiThemeProvider>
+      <React.Fragment>
+        <br />
+        <TextField
+          placeholder="Enter your Occupation"
+          label="Occupation"
+          onChange={handleChange("occupation")}
+          defaultValue={values.occupation}
+        />
+        <br />
+        <br />
+        <TextField
+          placeholder="Enter your City"
+          label="City"
+          onChange={handleChange("city")}
+          defaultValue={values.city}
+        />
+        <br />
+        <br />
+        <TextField
+          placeholder="Enter your Biography"
+          label="Biography"
+          onChange={handleChange("bio")}
+          defaultValue={values.bio}
+        />
+        <br />
+        <br />
+        <Button style={styles.button} variant="contained" onClick={this.back}>
+          Back
+        </Button>
+        <Button
+          color="primary"
+          variant="contained"
+          style={styles.button}
+          onClick={this.continue}
+        >
+          Continue
+        </Button>
+      </React.Fragment>
     );
   }
 }

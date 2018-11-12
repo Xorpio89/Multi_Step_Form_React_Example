@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import AppBar from "material-ui/AppBar";
-import { List, ListItem } from "material-ui/List";
-import RaisedButton from "material-ui/RaisedButton";
+// import { List, ListItem } from "material-ui/List";
+import { Button, List, ListItem, ListItemText } from "@material-ui/core";
 
 export class Confirm extends Component {
   continue = e => {
@@ -21,32 +19,53 @@ export class Confirm extends Component {
       values: { firstName, lastName, email, occupation, city, bio }
     } = this.props;
     return (
-      <MuiThemeProvider>
-        <React.Fragment>
-          <AppBar title="Confirm User Data" />
-          <List>
-            <ListItem primaryText="First Name" secondaryText={firstName} />
-            <ListItem primaryText="Last Name" secondaryText={lastName} />
-            <ListItem primaryText="Email" secondaryText={email} />
-            <ListItem primaryText="Occupation" secondaryText={occupation} />
-            <ListItem primaryText="City" secondaryText={city} />
-            <ListItem primaryText="Bio" secondaryText={bio} />
-          </List>
-          <br />
-          <RaisedButton
-            label="Back"
-            primary={true}
-            style={styles.button}
-            onClick={this.back}
-          />
-          <RaisedButton
-            label="Confirm & Continue"
-            primary={true}
-            style={styles.button}
-            onClick={this.continue}
-          />
-        </React.Fragment>
-      </MuiThemeProvider>
+      <React.Fragment>
+        <List>
+          <ListItem button>
+            <ListItemText
+              align="center"
+              primary="First Name"
+              secondary={firstName}
+            />
+          </ListItem>
+          <ListItem button>
+            <ListItemText
+              align="center"
+              primary="Last Name"
+              secondary={lastName}
+            />
+          </ListItem>
+          <ListItem button>
+            <ListItemText align="center" primary="Email" secondary={email} />
+          </ListItem>
+          <ListItem button>
+            <ListItemText
+              align="center"
+              primary="Occupation"
+              secondary={occupation}
+            />
+          </ListItem>
+          <ListItem button>
+            <ListItemText align="center" primary="City" secondary={city} />
+          </ListItem>
+          <ListItem button>
+            <ListItemText align="center" primary="Bio" secondary={bio} />
+          </ListItem>
+        </List>
+
+        <br />
+        <Button style={styles.button} variant="contained" onClick={this.back}>
+          Back
+        </Button>
+        <Button
+          color="primary"
+          variant="contained"
+          style={styles.button}
+          onClick={this.continue}
+        >
+          Confirm & Continue
+        </Button>
+      </React.Fragment>
     );
   }
 }

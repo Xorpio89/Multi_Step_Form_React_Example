@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import AppBar from "material-ui/AppBar";
-import TextField from "material-ui/TextField";
-import RaisedButton from "material-ui/RaisedButton";
+
+import { TextField, Button } from "@material-ui/core";
 
 export class FormUserDetails extends Component {
   continue = e => {
@@ -12,38 +10,41 @@ export class FormUserDetails extends Component {
   render() {
     const { values, handleChange } = this.props;
     return (
-      <MuiThemeProvider>
-        <React.Fragment>
-          <AppBar title="Enter User Details" />
-          <TextField
-            hintText="Enter your first name"
-            floatingLabelText="First Name"
-            onChange={handleChange("firstName")}
-            defaultValue={values.firstName}
-          />
-          <br />
-          <TextField
-            hintText="Enter your Last Name"
-            floatingLabelText="Last Name"
-            onChange={handleChange("lastName")}
-            defaultValue={values.lastName}
-          />
-          <br />
-          <TextField
-            hintText="Enter your Email"
-            floatingLabelText="Email"
-            onChange={handleChange("email")}
-            defaultValue={values.email}
-          />
-          <br />
-          <RaisedButton
-            label="Continue"
-            primary={true}
-            style={styles.button}
-            onClick={this.continue}
-          />
-        </React.Fragment>
-      </MuiThemeProvider>
+      <React.Fragment>
+        <br />
+        <TextField
+          placeholder="Enter your first name"
+          label="First Name"
+          onChange={handleChange("firstName")}
+          defaultValue={values.firstName}
+        />
+        <br />
+        <br />
+        <TextField
+          placeholder="Enter your Last Name"
+          label="Last Name"
+          onChange={handleChange("lastName")}
+          defaultValue={values.lastName}
+        />
+        <br />
+        <br />
+        <TextField
+          placeholder="Enter your Email"
+          label="Email"
+          onChange={handleChange("email")}
+          defaultValue={values.email}
+        />
+        <br />
+        <br />
+        <Button
+          variant="contained"
+          color="primary"
+          style={styles.button}
+          onClick={this.continue}
+        >
+          Continue
+        </Button>
+      </React.Fragment>
     );
   }
 }

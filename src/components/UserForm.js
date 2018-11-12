@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+
+import { AppBar, Toolbar, Typography } from "@material-ui/core";
+
 import FormUserDetails from "./FormUserDetails";
 import FormPersonalDetails from "./FormPersonalDetails";
 import Confirm from "./Confirm";
@@ -40,36 +43,70 @@ export class UserForm extends Component {
     const { step } = this.state;
     const { firstName, lastName, email, occupation, city, bio } = this.state;
     const values = { firstName, lastName, email, occupation, city, bio };
-    switch (step) {
-      case 1:
-        return (
-          <FormUserDetails
-            nextStep={this.nextStep}
-            handleChange={this.handleChange}
-            values={values}
-          />
-        );
-      case 2:
-        return (
-          <FormPersonalDetails
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-            handleChange={this.handleChange}
-            values={values}
-          />
-        );
-      case 3:
-        return (
-          <Confirm
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-            values={values}
-          />
-        );
-      case 4:
-        return <Success />;
-    }
+    return (
+      <React.Fragment>
+        <AppBar color="primary" position="static">
+          <Toolbar>
+            <Typography style={styles.grow} variant="h6" color="inherit">
+              {(() => {
+                switch (step) {
+                  case 1:
+                    return "Enter User Details";
+                  case 2:
+                    return "Enter Personal Details";
+                  case 3:
+                    return "Confirm User Data";
+                  case 4:
+                    return "Success";
+                  default:
+                    return null;
+                }
+              })()}
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        {(() => {
+          switch (step) {
+            case 1:
+              return (
+                <FormUserDetails
+                  nextStep={this.nextStep}
+                  handleChange={this.handleChange}
+                  values={values}
+                />
+              );
+            case 2:
+              return (
+                <FormPersonalDetails
+                  nextStep={this.nextStep}
+                  prevStep={this.prevStep}
+                  handleChange={this.handleChange}
+                  values={values}
+                />
+              );
+            case 3:
+              return (
+                <Confirm
+                  nextStep={this.nextStep}
+                  prevStep={this.prevStep}
+                  values={values}
+                />
+              );
+            case 4:
+              return <Success />;
+            default:
+              return null;
+          }
+        })()}
+      </React.Fragment>
+    );
   }
 }
+
+const styles = {
+  grow: {
+    flexGrow: 1
+  }
+};
 
 export default UserForm;
